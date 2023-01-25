@@ -14,16 +14,23 @@
   { name: 'Fraise Tagada', price: 5.99 }
 ]
 
-  // const searchCandies = (searchString, maximumPrice) => {
- const filteredCandiesByPrice = candies.filter(candy =>candy.price<5);
- const findsString = candies.map(
+ const filteredCandiesByPrice = (listOfCandies, maximumPrice) => {
+    return listOfCandies.filter( candy => (candy.price <= maximumPrice) );
+ };
+ 
+ const findsString = (listOfCandies, searchString) => {
+    return listOfCandies.filter( candy => (candy.name.toLowerCase().startsWith(searchString.toLowerCase())));
+ };
   
-   
-console.log(filteredCandiesByPrice);
-  
-  // log the sale price to console
-  
+ const searchCandies = (searchString, maximumPrice) => {
+    const priceFilteredList = filteredCandiesByPrice(candies, maximumPrice);
+    return findsString(priceFilteredList, searchString).map(candy => candy.name);
+ };
 
-// console.log(candies)
+// const searchCandies = (searchString, maximumPrice) => {
+//   return candies.filter( candy => (candy.price <= maximumPrice) )
+//                 .filter( candy => (candy.name.toLowerCase().startsWith(searchString.toLowerCase())))
+//                 .map(candy => candy.name);
+// }     
 
 module.exports = searchCandies;
